@@ -1,26 +1,18 @@
 
-print("Hi, welcome to Chama Sacco, please provide the following details in order to register.")
+import africastalking
 
-name = input("Please enter your full names: ")
-ID_number = input("Please Provide your ID Number: ")
+africastalking.initialize(username='userforsms', api_key='659c939f8108261fe39f36ab3248c04ad06eee0a8e2171d1cd875540e2295a79')
 
-print("Hi " + name + ", you have successfully registered at Chama Sacco.")
 
-import africastalking;
+sms = africastalking.SMS
 
-username = "sandbox"
-api_key = "09f50cbc3c8d51f579abae7f9430be7eb88363ee13db877203411881a9aa02b9M"
 
-africastalking.initialize(username, api_key)
+message = "Hello from Africa's Talking!"
+recipients = ['+254743075025', '+254105202983']
 
-def send_sms(phone_number, message):
-    sms = africastalking.SMS
-    response = sms.send(message, [phone_number])
-
-print(response)
-
-if __name__ == "__main__":
-    phone_number == "+254743075025"
-    message == "Welcome to Chama Sacco!"
-
-    send_sms(phone_number, message)
+try:
+    response = sms.send(message, recipients)
+    print(response)
+    
+except Exception as e:
+    print("An error occurred:", e)
